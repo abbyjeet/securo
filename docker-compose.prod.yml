@@ -64,6 +64,7 @@ x-backend-env: &backend-env
   # ollama/openai/openai_compatible for better quality.
   AGENTS_EMBEDDING_PROVIDER: ${AGENTS_EMBEDDING_PROVIDER:-native}
   AGENTS_EMBEDDING_MODEL: ${AGENTS_EMBEDDING_MODEL:-sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}
+  UP_ENABLED: ${UP_ENABLED:-false}
 
 x-backend-base: &backend-base
   image: ghcr.io/securo-finance/securo-backend:latest
@@ -72,7 +73,7 @@ x-backend-base: &backend-base
     db: { condition: service_healthy }
     redis: { condition: service_healthy }
   volumes:
-    - ./secrets:/app/secrets:ro
+    - ./secrets:/app/secrets:ro,z
     - attachments:/app/data/attachments
     - agent_knowledge:/app/data/agent_knowledge
     - agent_embedding_models:/app/data/embedding_models
