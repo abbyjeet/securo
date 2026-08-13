@@ -73,7 +73,7 @@ x-backend-base: &backend-base
     db: { condition: service_healthy }
     redis: { condition: service_healthy }
   volumes:
-    - ./secrets:/app/secrets:ro,z
+    - ./secrets:/app/secrets:ro
     - attachments:/app/data/attachments
     - agent_knowledge:/app/data/agent_knowledge
     - agent_embedding_models:/app/data/embedding_models
