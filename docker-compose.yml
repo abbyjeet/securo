@@ -106,6 +106,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: securo
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -168,6 +170,12 @@ services:
 
 volumes:
   pgdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      # Put the absolute path to your desired local storage folder here:
+      device: '/home/abhijit/.securo_data/db'
   attachments:
   agent_knowledge:
   agent_embedding_models:
