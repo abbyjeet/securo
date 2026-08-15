@@ -137,9 +137,13 @@ export function AppLayout() {
     if (!agentsEnabled) return
     const handler = (e: KeyboardEvent) => {
       const isMod = e.metaKey || e.ctrlKey
+      const isShift = e.shiftKey
       if (isMod && (e.key === 'j' || e.key === 'J')) {
         e.preventDefault()
         setChatOpen((prev) => !prev)
+      } else if (isShift && isMod && (e.key === 'p' || e.key === 'P')) {
+        e.preventDefault()
+        togglePrivacyMode() // toggle privacy mode with ⌘⇧P / Ctrl+Shift+P / Win+Shift+P
       }
     }
     document.addEventListener('keydown', handler)
