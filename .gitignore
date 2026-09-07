@@ -4,9 +4,8 @@ secrets/
 .worktrees/
 .DS_Store
 .playwright-mcp/
-.claude
+.pi
 .mcp.json
-CLAUDE.md
 docs/plans/
 tmp/
 docker-compose.override.yml
