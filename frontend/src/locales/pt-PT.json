@@ -58,7 +58,10 @@
     "archiveHint": "O espaço de trabalho fica oculto da lista e do seletor. Os dados permanecem preservados.",
     "archiveSuccess": "Espaço de trabalho arquivado",
     "archiveConfirmTitle": "Arquivar espaço de trabalho?",
-    "archiveConfirmDescription": "O espaço de trabalho \"{{name}}\" será removido da tua lista. Os dados permanecem preservados e um administrador poderá restaurá-lo mais tarde."
+    "archiveConfirmDescription": "O espaço de trabalho \"{{name}}\" será removido da tua lista. Os dados permanecem preservados e um administrador poderá restaurá-lo mais tarde.",
+    "featuresSectionTitle": "Recursos",
+    "enableEnvelopeBudgeting": "Activar orçamento por sobres",
+    "enableEnvelopeBudgetingHint": "Agrupar receitas e despesas em sobres para ficar no rumo dos seus orçamentos."
   },
   "app": {
     "name": "Securo",

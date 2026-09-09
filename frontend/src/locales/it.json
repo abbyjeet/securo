@@ -58,7 +58,10 @@
     "archiveHint": "L'area di lavoro viene nascosta dall'elenco e dal selettore. I dati vengono conservati.",
     "archiveSuccess": "Area di lavoro archiviata",
     "archiveConfirmTitle": "Archiviare l'area di lavoro?",
-    "archiveConfirmDescription": "L'area di lavoro \"{{name}}\" sarà rimossa dal tuo elenco. I dati vengono conservati e un amministratore potrà ripristinarla in seguito."
+    "archiveConfirmDescription": "L'area di lavoro \"{{name}}\" sarà rimossa dal tuo elenco. I dati vengono conservati e un amministratore potrà ripristinarla in seguito.",
+    "featuresSectionTitle": "Funzioni",
+    "enableEnvelopeBudgeting": "Abilita il budget per buste",
+    "enableEnvelopeBudgetingHint": "Raggruppa entrate e uscite in buste per rimanere in linea con i tuoi budget."
   },
   "app": {
     "name": "Securo",

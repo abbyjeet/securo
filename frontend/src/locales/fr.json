@@ -58,7 +58,10 @@
     "archiveHint": "L'espace de travail est masqué de la liste et du sélecteur. Les données sont conservées.",
     "archiveSuccess": "Espace de travail archivé",
     "archiveConfirmTitle": "Archiver l'espace de travail ?",
-    "archiveConfirmDescription": "L'espace de travail « {{name}} » sera retiré de votre liste. Les données sont conservées et un administrateur pourra le restaurer ultérieurement."
+    "archiveConfirmDescription": "L'espace de travail « {{name}} » sera retiré de votre liste. Les données sont conservées et un administrateur pourra le restaurer ultérieurement.",
+    "featuresSectionTitle": "Fonctions",
+    "enableEnvelopeBudgeting": "Activer le budget par enveloppes",
+    "enableEnvelopeBudgetingHint": "Groupez les revenus et les dépenses dans des enveloppes pour rester sur la bonne voie."
   },
   "app": {
     "name": "Securo",

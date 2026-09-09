@@ -58,7 +58,10 @@
     "archiveHint": "Obszar roboczy zostanie ukryty z listy i przełącznika. Dane zostają zachowane.",
     "archiveSuccess": "Zarchiwizowano obszar roboczy",
     "archiveConfirmTitle": "Zarchiwizować obszar roboczy?",
-    "archiveConfirmDescription": "Obszar roboczy „{{name}}” zostanie usunięty z listy. Dane zostają zachowane, a administrator może go później przywrócić."
+    "archiveConfirmDescription": "Obszar roboczy „{{name}}” zostanie usunięty z listy. Dane zostają zachowane, a administrator może go później przywrócić.",
+    "featuresSectionTitle": "Funkcje",
+    "enableEnvelopeBudgeting": "Włącz budżet kopertowy",
+    "enableEnvelopeBudgetingHint": "Grupuj dochody i wydatki w koperty, aby pozostać na torze z budżetem."
   },
   "app": {
     "name": "Securo",

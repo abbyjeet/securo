@@ -58,7 +58,10 @@
     "archiveSuccess": "Workspace gearchiveerd",
     "archiveConfirmTitle": "Workspace archiveren?",
     "archiveConfirmDescription": "De workspace \"{{name}}\" wordt uit uw lijst verwijderd. Gegevens blijven behouden en een beheerder kan deze later herstellen.",
-    "addMemberDescriptionExistingOnly": "Nodig een bestaande gebruiker uit via e-mail."
+    "addMemberDescriptionExistingOnly": "Nodig een bestaande gebruiker uit via e-mail.",
+    "featuresSectionTitle": "Functies",
+    "enableEnvelopeBudgeting": "Omhüllingsbudget activeren",
+    "enableEnvelopeBudgetingHint": "Groepeer inkomsten en uitgaven in enveloppen om op schema te blijven met je budgetten."
   },
   "app": {
     "name": "Securo",

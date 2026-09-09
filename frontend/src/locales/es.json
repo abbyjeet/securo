@@ -58,7 +58,10 @@
     "archiveHint": "El espacio de trabajo se oculta de la lista y del selector. Los datos se conservan.",
     "archiveSuccess": "Espacio de trabajo archivado",
     "archiveConfirmTitle": "¿Archivar espacio de trabajo?",
-    "archiveConfirmDescription": "El espacio de trabajo \"{{name}}\" se eliminará de tu lista. Los datos se conservan y un administrador puede restaurarlo más tarde."
+    "archiveConfirmDescription": "El espacio de trabajo \"{{name}}\" se eliminará de tu lista. Los datos se conservan y un administrador puede restaurarlo más tarde.",
+    "featuresSectionTitle": "Características",
+    "enableEnvelopeBudgeting": "Activar presupuesto con sobres",
+    "enableEnvelopeBudgetingHint": "Agrupar ingresos y gastos en sobres para mantenerse al día con sus presupuestos."
   },
   "app": {
     "name": "Securo",

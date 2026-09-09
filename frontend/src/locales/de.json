@@ -58,7 +58,10 @@
     "archiveHint": "Der Workspace wird aus der Liste entfernt und ist nicht mehr in der Workspace-Auswahl sichtbar. Die Daten bleiben erhalten.",
     "archiveSuccess": "Workspace archiviert",
     "archiveConfirmTitle": "Workspace archivieren?",
-    "archiveConfirmDescription": "Der Workspace \"{{name}}\" wird aus deiner Liste entfernt. Die Daten bleiben erhalten und ein Administrator kann ihn später wiederherstellen."
+    "archiveConfirmDescription": "Der Workspace \"{{name}}\" wird aus deiner Liste entfernt. Die Daten bleiben erhalten und ein Administrator kann ihn später wiederherstellen.",
+    "featuresSectionTitle": "Funktionen",
+    "enableEnvelopeBudgeting": "Umhüllten-Budget aktivieren",
+    "enableEnvelopeBudgetingHint": "Gruppieren Sie Einnahmen und Ausgaben in Umhüllungen, um Ihren Budgets zu folgen."
   },
   "app": {
     "name": "Securo",

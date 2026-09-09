@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
+import { Switch } from '@/components/ui/switch'
 import { Skeleton } from '@/components/ui/skeleton'
 import { IconPicker } from '@/components/icon-picker'
 import { CategoryIcon } from '@/components/category-icon'
@@ -88,6 +89,7 @@ export default function WorkspaceSettingsPage() {
   const [editCurrency, setEditCurrency] = useState('')
   const [editLocale, setEditLocale] = useState('')
   const [editJurisdiction, setEditJurisdiction] = useState('')
+  const [enableEnvelopeBudgeting, setEnableEnvelopeBudgeting] = useState(false)
   const [editIcon, setEditIcon] = useState(DEFAULT_WORKSPACE_ICON)
   const [editColor, setEditColor] = useState(DEFAULT_WORKSPACE_COLOR)
   const [inviteOpen, setInviteOpen] = useState(false)
@@ -105,6 +107,7 @@ export default function WorkspaceSettingsPage() {
     setEditJurisdiction(current.tax_jurisdiction ?? '')
     setEditIcon(current.icon ?? DEFAULT_WORKSPACE_ICON)
     setEditColor(current.color ?? DEFAULT_WORKSPACE_COLOR)
+    setEnableEnvelopeBudgeting(false)
   }, [current?.id, current?.name, current?.default_currency, current?.locale, current?.tax_jurisdiction, current?.icon, current?.color])
 
   // Which jurisdictions ship a pack. An empty choice is valid, not missing:
@@ -475,6 +478,17 @@ export default function WorkspaceSettingsPage() {
         </div>
       </section>
 
+      {/* Features section — separate card */}
+      <section className="space-y-4 rounded-xl border bg-card p-6">
+        <h3 className="text-base font-semibold text-muted-foreground">{t('workspace.featuresSectionTitle')}</h3>
+        <SwitchSection
+          label={t('workspace.enableEnvelopeBudgeting')}
+          hint={t('workspace.enableEnvelopeBudgetingHint')}
+          checked={enableEnvelopeBudgeting}
+          onCheckedChange={setEnableEnvelopeBudgeting}
+        />
+      </section>
+
       {/* Members card */}
       <section className="space-y-4 rounded-xl border bg-card p-6">
         <div className="flex items-center justify-between">
@@ -753,6 +767,27 @@ export default function WorkspaceSettingsPage() {
         </DialogContent>
       </Dialog>
     </div>
+  )
+}
+
+function SwitchSection({ label, hint, checked, onCheckedChange }: {
+  label: string
+  hint?: string
+  checked: boolean
+  onCheckedChange: (checked: boolean) => void
+}) {
+  return (
+    <label className="flex items-center justify-between group cursor-pointer select-none">
+      <div className="flex-1 min-w-0 mr-4">
+        <p className="text-sm font-medium text-foreground transition-colors">
+          {label}
+        </p>
+        {hint && (
+          <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{hint}</p>
+        )}
+      </div>
+      <Switch checked={checked} onCheckedChange={onCheckedChange} />
+    </label>
   )
 }
 

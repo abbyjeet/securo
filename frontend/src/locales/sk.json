@@ -58,7 +58,10 @@
     "archiveHint": "Pracovný priestor sa skryje zo zoznamu aj z prepínača. Údaje zostanú zachované.",
     "archiveSuccess": "Pracovný priestor archivovaný",
     "archiveConfirmTitle": "Archivovať pracovný priestor?",
-    "archiveConfirmDescription": "Pracovný priestor „{{name}}“ sa odstráni z tvojho zoznamu. Údaje zostanú zachované a správca ho môže neskôr obnoviť."
+    "archiveConfirmDescription": "Pracovný priestor „{{name}}“ sa odstráni z tvojho zoznamu. Údaje zostanú zachované a správca ho môže neskôr obnoviť.",
+    "featuresSectionTitle": "Funkcie",
+    "enableEnvelopeBudgeting": "Povoliť rozpočet v obaloch",
+    "enableEnvelopeBudgetingHint": "Skupujte príjmy a výdavky do obálok, aby ste zostali na správnej ceste s rozpočtami."
   },
   "app": {
     "name": "Securo",

@@ -58,7 +58,10 @@
     "archiveHint": "O workspace fica oculto da lista e do switcher. Os dados continuam preservados.",
     "archiveSuccess": "Workspace arquivado",
     "archiveConfirmTitle": "Arquivar workspace?",
-    "archiveConfirmDescription": "O workspace \"{{name}}\" será removido da sua lista. Os dados ficam preservados e um admin pode restaurar mais tarde."
+    "archiveConfirmDescription": "O workspace \"{{name}}\" será removido da sua lista. Os dados ficam preservados e um admin pode restaurar mais tarde.",
+    "featuresSectionTitle": "Recursos",
+    "enableEnvelopeBudgeting": "Ativar orçamento por envelopes",
+    "enableEnvelopeBudgetingHint": "Agrupe receitas e despesas em envelopes para permanecer no rumo dos seus orçamentos."
   },
   "app": {
     "name": "Securo",
