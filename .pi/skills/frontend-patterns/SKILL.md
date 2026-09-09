@@ -1,6 +1,18 @@
-# Securo Frontend Patterns
+---
+title: 'Securo Frontend Patterns'
+description: |
+  A reference guide for building UI components in Securo's frontend (React + TypeScript + Tailwind CSS v4).
+  Includes patterns for WorkspaceSettingsPage, SwitchSection reusable component, section card layout,
+  i18n key conventions, and common anti-patterns to avoid. Based on real implementations from
+  frontend/src/pages/workspace-settings.tsx and frontend/src/components/ui/.
+tools:
+  - read
+  - write
+  - bash
+generated_at: '2025-09-09'
+---
 
-This skill captures proven patterns, component structures, and best practices from the Securo codebase. Use this as a reference when building new UI elements or pages.
+# Securo Frontend Patterns
 
 ## Core Principles
 
