@@ -88,6 +88,12 @@ class Workspace(Base):
     tax_jurisdiction: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
     icon: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     color: Mapped[Optional[str]] = mapped_column(String(7), nullable=True)
+    # Optional feature flag — persisted per workspace so each instance can
+    # opt in/out independently. Defaults to False; new workspaces start with
+    # it off until an admin enables it.
+    enable_envelope_budgeting: Mapped[bool] = mapped_column(
+        Boolean, default=False, server_default="false"
+    )
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
     )

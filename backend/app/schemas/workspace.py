@@ -21,6 +21,9 @@ class WorkspaceRead(BaseModel):
     tax_jurisdiction: Optional[str] = None
     icon: Optional[str] = None
     color: Optional[str] = None
+    # Feature flag for envelope budgeting. Always surfaced so the UI can
+    # render its toggle; ownership rules are enforced by the PATCH handler.
+    enable_envelope_budgeting: bool
     created_at: datetime
     created_by_user_id: Optional[uuid.UUID] = None
     managed_by_user_id: Optional[uuid.UUID] = None
@@ -52,6 +55,10 @@ class WorkspaceCreate(BaseModel):
     # the workspace will be handed off to someone else as the day-to-day
     # owner.
     self_membership: bool = False
+    # Feature flag for envelope budgeting. The primary workspace starts with
+    # it enabled; secondary workspaces default to False. This field is
+    # optional here — omission means the model's server_default applies.
+    enable_envelope_budgeting: Optional[bool] = None
 
 
 class WorkspaceUpdate(BaseModel):
@@ -65,6 +72,10 @@ class WorkspaceUpdate(BaseModel):
     # Editable, unlike `kind`: a business relocates, and every workspace that
     # existed before jurisdictions did needs a way to say where it files.
     tax_jurisdiction: Optional[str] = Field(default=None, max_length=10)
+    # Feature flag for envelope budgeting. Each workspace can opt in/out
+    # independently; the toggle is always visible but only one instance
+    # (the primary) will have it active at a time.
+    enable_envelope_budgeting: Optional[bool] = None
 
 
 class MemberRead(BaseModel):

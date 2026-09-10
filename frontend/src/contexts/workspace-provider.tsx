@@ -14,6 +14,11 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
   const queryClient = useQueryClient()
 
+  // Named query key for React Query invalidation.
+  // Used by workspace-settings page to invalidate the list after a save,
+  // ensuring switchWorkspace picks up the persisted enable_envelope_budgeting value.
+  const WORKSPACE_LIST_QUERY_KEY = ['workspaces.list']
+
   const loadWorkspaces = useCallback(async () => {
     setIsLoading(true)
     try {
@@ -71,8 +76,12 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       // triggering refetches (mounted components kept their previous
       // render until a manual reload).
       await queryClient.resetQueries()
+      // Refetch the workspace list to pick up any server-side changes.
+      // This is essential after a mutation save, where `refresh()` was
+      // called in the mutation's onSuccess but we need fresh data here.
+      void loadWorkspaces()
     },
-    [currentId, queryClient],
+    [currentId, queryClient, loadWorkspaces],
   )
 
   const current = useMemo(

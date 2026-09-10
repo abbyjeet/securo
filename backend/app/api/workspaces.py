@@ -5,7 +5,10 @@ creates the additional ones and is the only place `kind` is ever set;
 `PATCH` edits the rest of the workspace and deliberately cannot touch
 it.
 """
+import logging
 import uuid
+
+logger = logging.getLogger(__name__)
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi_users import schemas as fu_schemas
@@ -118,7 +121,7 @@ async def create_workspace_endpoint(
         tax_jurisdiction=body.tax_jurisdiction,
         icon=body.icon,
         color=body.color,
-        self_membership=body.self_membership,
+        enable_envelope_budgeting=False,  # Secondary workspaces start disabled
     )
     await session.commit()
     return _workspace_read(workspace, "owner" if body.self_membership else "manager")
@@ -144,6 +147,10 @@ async def update_workspace(
     if workspace is None:
         raise HTTPException(status_code=404, detail="Workspace not found")
     updates = body.model_dump(exclude_unset=True)
+    logger.info(
+        f"Update workspace {workspace_id}: received updates={updates}, "
+        f"enable_envelope_budgeting type={type(updates.get('enable_envelope_budgeting'))}"
+    )
     for key, value in updates.items():
         setattr(workspace, key, value)
     # Changing the workspace currency follows through to the acting

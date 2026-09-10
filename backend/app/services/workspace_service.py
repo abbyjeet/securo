@@ -71,6 +71,7 @@ async def create_personal_workspace_for_user(
         created_by_user_id=user.id,
         default_currency=prefs.get("currency_display", "USD"),
         locale=lang,
+        enable_envelope_budgeting=True,  # Primary workspace starts with it enabled
     )
     session.add(workspace)
     await session.flush()
@@ -218,6 +219,7 @@ async def create_workspace(
     tax_jurisdiction: Optional[str] = None,
     icon: Optional[str] = None,
     color: Optional[str] = None,
+    enable_envelope_budgeting: bool = False,
     self_membership: bool = False,
     seed_defaults: bool = True,
 ) -> Workspace:
@@ -232,6 +234,11 @@ async def create_workspace(
     categories + rules the Personal workspace gets. Without this every
     new workspace would force the user to rebuild their taxonomy from
     scratch.
+
+    `enable_envelope_budgeting=False` by default. Set True for the primary
+    workspace (the one tied to the user's identity) so that envelope
+    budgeting is available there first, and False for secondary workspaces
+    created later as templates.
     """
     prefs = creator.preferences or {}
     workspace_locale = locale or prefs.get("language") or "en"
@@ -245,6 +252,7 @@ async def create_workspace(
         tax_jurisdiction=tax_jurisdiction,
         icon=icon,
         color=color,
+        enable_envelope_budgeting=enable_envelope_budgeting,
     )
     session.add(workspace)
     await session.flush()

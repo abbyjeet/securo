@@ -148,8 +148,15 @@ export const workspaces = {
     id: string,
     payload: Partial<
       Pick<Workspace, 'name' | 'icon' | 'color' | 'default_currency' | 'locale'>
-    > & { tax_jurisdiction?: string | null },
+    > & { tax_jurisdiction?: string | null; enable_envelope_budgeting?: boolean },
   ): Promise<Workspace> => {
+    const payloadToSend = { ...payload }
+    if (typeof console !== 'undefined') {
+      console.log(
+        '[workspacesApi.update] sending:', JSON.stringify(payloadToSend),
+        'enable_envelope_budgeting type:', typeof payloadToSend.enable_envelope_budgeting,
+      )
+    }
     const { data } = await api.patch(`/workspaces/${id}`, payload)
     return data
   },

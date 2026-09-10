@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDateLocale } from '@/hooks/use-display-locale'
@@ -152,9 +152,44 @@ export default function WorkspaceSettingsPage() {
     enabled: !!current,
   })
 
+  // Active observer for the current workspace's detail data.
+  // staleTime = 0 ensures this refetches from server on every render if invalidated.
+  const { data: currentWorkspaceData } = useQuery({
+    queryKey: ['workspace.detail', current?.id],
+    queryFn: () => (current ? workspacesApi.current() : Promise.resolve(null)),
+    enabled: !!current,
+    staleTime: 0,  // Always fresh — refetches from server on every invalidation
+    initialData: current || null,
+  })
+
+  // Sync local form state with fresh data from server (via React Query).
+  // This ensures that after a mutation succeeds, the UI reflects the saved value.
+  useEffect(() => {
+    if (!currentWorkspaceData) return
+    setEditName(currentWorkspaceData.name ?? '')
+    setEditCurrency(currentWorkspaceData.default_currency ?? '')
+    setEditLocale(currentWorkspaceData.locale ?? '')
+    setEditJurisdiction(currentWorkspaceData.tax_jurisdiction ?? '')
+    setEditIcon(currentWorkspaceData.icon ?? DEFAULT_WORKSPACE_ICON)
+    setEditColor(currentWorkspaceData.color ?? DEFAULT_WORKSPACE_COLOR)
+    // For the toggle: use the fresh data from server, not local state.
+    // If enable_envelope_budgeting is undefined (pre-migration rows), default to false.
+    const savedValue = currentWorkspaceData.enable_envelope_budgeting ?? false
+    setEnableEnvelopeBudgeting(savedValue)
+  }, [currentWorkspaceData])
+
   const updateMutation = useMutation({
     mutationFn: () => {
       if (!current) throw new Error('No workspace')
+      console.log('[updateMutation] sending payload:', JSON.stringify({
+        name: editName,
+        default_currency: editCurrency,
+        locale: editLocale || null as unknown as string,
+        tax_jurisdiction: editJurisdiction || null,
+        icon: editIcon,
+        color: editColor,
+        enable_envelope_budgeting: enableEnvelopeBudgeting,
+      }))
       return workspacesApi.update(current.id, {
         name: editName,
         default_currency: editCurrency,
@@ -162,17 +197,19 @@ export default function WorkspaceSettingsPage() {
         tax_jurisdiction: editJurisdiction || null,
         icon: editIcon,
         color: editColor,
+        enable_envelope_budgeting: enableEnvelopeBudgeting,
       })
     },
     onSuccess: () => {
       toast.success(t('workspace.saveSuccess'))
-      void refresh()
+      console.log('[updateMutation.onSuccess] mutation succeeded, enableEnvelopeBudgeting:', enableEnvelopeBudgeting)
+      // Invalidate the workspace detail query we are actively observing.
+      void queryClient.invalidateQueries({ queryKey: ['workspace.detail', current?.id] })
       // Changing the workspace currency also updates the acting user's
       // display currency server-side; refresh the cached user so the
       // whole app re-renders in the new currency, then drop currency-
       // dependent queries.
       void authApi.me().then(updateUser).catch(() => {})
-      void queryClient.invalidateQueries()
     },
     onError: (e: unknown) => {
       const detail =
